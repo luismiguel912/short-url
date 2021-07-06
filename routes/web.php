@@ -23,5 +23,5 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/codigo', [App\Http\Controllers\UrlController::class, 'show'])->name('codigo');
-Route::get('/url', [App\Http\Controllers\UrlController::class, 'store'])->name('almacenar');
+Route::GET('/codigo', [App\Http\Controllers\UrlController::class, 'show'])->name('codigo');
+Route::POST('/url', [App\Http\Controllers\UrlController::class, 'store'])->name('almacenar');

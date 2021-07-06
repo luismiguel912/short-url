@@ -26,6 +26,14 @@ window.shorter = {
     validate_url: ( url ) => {
         let status = true;
 
-
+        if(url.trim == ""){
+            status = false;
+            alert("debes de colocar una url");
+        }
+        if(!validUrl.isWebUri(url)){
+            status = false;
+            alert("DEbe ingresar url valida");
+        }
+        return status;
     },
 }
