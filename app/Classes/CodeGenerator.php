@@ -6,6 +6,13 @@ class CodeGenerator{
     protected $chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
     public function get_code($key){
+        // dd($key);
+        $random_num = $this->get_random_num($key);
+        // dd($random_num);
+        $base62_num = $this->get_base62($random_num);
+        $random_key = $this->chars[rand(0,61)];
+        $code = $random_key . $base62_num;
+        return $code;
 
     }
 
@@ -16,6 +23,7 @@ class CodeGenerator{
         $ms = ($ms < 100) ? $ms * 10 : $ms;
         $num = (int) ($s . $ms);
         $num = $key + $num;
+        return $num;
 
     }
 
