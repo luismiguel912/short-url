@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Url;
+use Illuminate\Support\Facades\DB;
 
 class UrlController extends Controller
 {
@@ -35,6 +36,7 @@ class UrlController extends Controller
      */
     public function store(Request $request, Url $url)
     {
+        // dd($request->long_url);
         $code = $url->short_url($request->long_url);
         return response()->json([
             'short_url' => url('/'). '/' . $code
@@ -47,9 +49,15 @@ class UrlController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $code)
     {
-        //
+        $url = DB::table('urls')->where('codigo', $code)->first();
+
+        if($url){
+            return redirect()->away($url->url);
+        }else{
+            abort(404);
+        };
     }
 
     /**
